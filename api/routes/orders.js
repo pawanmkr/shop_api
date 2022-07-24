@@ -1,4 +1,5 @@
-import Express from "express";
+const Express = require('express');
+
 const router = Express.Router();
 
 router.get('/', (req, res) => {
@@ -10,11 +11,13 @@ router.post('/', (req, res) => {
 });
 
 router.patch('/:orderId', (req, res) => {
-    res.send(`address updated successfully...here's your order ID: ${req.params.orderId}`);
+    res.send(`address updated successfully...here's your order ID: 
+    ${req.params.orderId}`);
 });
 
 router.delete('/:orderId', (req, res) => {
-    res.send(`cancellation request accepted...fuck you & money will be refunded...fuck you asshole again`);
+    res.send(`cancellation request accepted...
+    fuck you & money will be refunded...fuck you asshole again`);
 });
 
-export default router;
+module.exports = router;

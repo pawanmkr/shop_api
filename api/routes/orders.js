@@ -1,13 +1,55 @@
 const Express = require('express');
+const mongoose = require('mongoose');
+const orders = require('../models/orders');
+const Orders = require('../models/orders');
 
 const router = Express.Router();
 
 router.get('/', (req, res) => {
-    res.send('orders has been fetched...bro');
+    Orders.find().select('product quantity _id')
+    .exec()
+    .then((docs) => {
+        if (docs.length > 0) {
+            res.send({
+                Count: docs.length,
+                orders: docs.map((doc) => {
+                    return {
+                        Id: doc._id,
+                        product: doc.product,
+                        quantity: doc.quantity,
+                        request: {
+                            type: 'GET',
+                            url: 'http://localhost:9000/orders/' + doc._id
+                        }
+                    }
+                }) 
+            })
+        }
+        else {
+            res.send('No orders has been placed yet');
+        }
+    })
+    .catch((error) => {
+        res.status(404);
+        res.send(error);
+    });
 });
 
 router.post('/', (req, res) => {
-    res.send('order placed successfully...bro');
+    const order = new Orders({
+        _id: mongoose.Types.ObjectId(),
+        quantity: req.body.quantity,
+        product: req.body.productId
+    });
+    order.save()
+    .then((result) => {
+        res.status(200);
+        res.send(result);
+    })
+    .catch((error) => {
+        res.send(error);
+    });
+
 });
 
 router.patch('/:orderId', (req, res) => {

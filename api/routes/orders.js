@@ -8,6 +8,7 @@ const router = Express.Router();
 // fetch all the orders
 router.get('/', (req, res) => {
     Orders.find().select('product quantity _id')
+    .populate('product', 'name price')
     .exec()
     .then((docs) => {
         if (docs.length > 0) {
@@ -40,6 +41,7 @@ router.get('/', (req, res) => {
 router.get('/:orderId', (req, res) => {
     let id = req.params.orderId;
     Orders.findById(id).select('product quantity _id')
+    .populate('product', 'name price')
     .exec()
     .then((doc) => {
         res.send({

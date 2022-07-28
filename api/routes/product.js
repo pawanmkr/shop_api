@@ -15,11 +15,11 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, cb) => {
-    if (file.mimetype === ['jpeg', 'jpg', 'png']) {
-        cb(null, true);
-    }
-    else {
-        cb(null, false);
+    if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
+      cb(null, true);
+    } else {
+      cb(null, false);
+      return cb(new Error('Only .png, .jpg and .jpeg format allowed!'));
     }
 }
 
@@ -69,6 +69,7 @@ router.get('/:productId', (req, res) => {
 
 //POST Request
 router.post('/', upload.single('productImage'), (req, res) => {
+    console.log(req.body)
     if (!req.file) {
         return res.send('please upload the file');
     }

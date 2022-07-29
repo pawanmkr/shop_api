@@ -15,3 +15,6 @@ A rest API for shop with multiple requests, errors handeld, utilized authenticat
 
 - go to app.js file and replace the code you copied in mongo.connect() function just like i have done
 - go to nodemon.js to replace the mongo password with yours or simply, you can also add directly in the mongo.connect() function in the place of `+ ${process.env.MONGOPASS} +`
+- one last thing required to test the API is [Postman](https://www.postman.com/downloads/postman-agent/) or some other API testing tool
+- install postman create account if required to use
+- ### that's all...now, let's start testing

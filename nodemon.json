@@ -1,5 +1,6 @@
 {
     "env": {
-        "MONGOPASS": "mint"
+        "MONGOPASS": "mint",
+        "JWTKEY": "hiddenkey"
     }
 }

@@ -2,6 +2,7 @@ const Express = require('express');
 const mongoose = require('mongoose');
 const Product = require('../models/products');
 const multer = require('multer');
+const checkAuth = require('../middlewares/check-auth');
 
 const router = Express.Router();
 
@@ -68,7 +69,7 @@ router.get('/:productId', (req, res) => {
 });
 
 //POST Request
-router.post('/', upload.single('productImage'), (req, res) => {
+router.post('/', checkAuth, upload.single('productImage'), (req, res) => {
     console.log(req.body)
     if (!req.file) {
         return res.send('please upload the file');
@@ -92,7 +93,7 @@ router.post('/', upload.single('productImage'), (req, res) => {
 });
 
 //PATCH for updating
-router.patch('/:productId', (req, res) => {
+router.patch('/:productId', checkAuth, (req, res) => {
     const id = req.params.productId;
 
     Product.findByIdAndUpdate(id, {$set: req.body}, {new: true}).
@@ -107,7 +108,7 @@ router.patch('/:productId', (req, res) => {
 });
 
 //DELETE for removing ID Wise
-router.delete('/:productId', (req, res) => {
+router.delete('/:productId', checkAuth, (req, res) => {
     let id = req.params.productId;
     Product.remove({_id: id}).exec().then(() => {
         res.send(`${req.params.productId} got deleted successfully!`);

@@ -55,7 +55,10 @@ exports.createProduct = (req, res) => {
     save().
     then(result => {
         console.log(result);
-        res.status(200).json(result);
+        res.status(200).json({
+            message: "Product Creation Successfull",
+            result: result
+        });
     }).
     catch( (err) => {
         console.log("error while POST: " + err);
@@ -64,9 +67,7 @@ exports.createProduct = (req, res) => {
 }
 
 exports.patchProduct = (req, res) => {
-    const id = req.params.productId;
-
-    Product.findByIdAndUpdate(id, {$set: req.body}, {new: true}).
+    Product.findByIdAndUpdate(req.params.productId, {$set: req.body}, {new: true}).
     exec().
     then((result) => {
         res.status(200).json(result);

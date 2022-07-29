@@ -20,16 +20,18 @@ A rest API for shop with multiple requests, errors handeld, utilized authenticat
 - ## that's all...now, let's start testing
 
 by default the PORT it's using is 9000 you can also change it
-- now open postman and enter this url `http://localhost:9000/user/signup/`
+- open postman and enter this url `http://localhost:9000/user/signup/`
 - switch to POST request, right-side of the address bar
 - select body -> raw -> JSON
 - use the expample in snapshot to do the same to create & login the user
 <img width="1440" alt="Screenshot 2022-07-29 at 2 37 54 PM" src="https://user-images.githubusercontent.com/53852047/181815110-7fbc9717-5fe2-436a-aedf-540e8c8f9295.png">
+
 - when you again enter same data
 <img width="1440" alt="Screenshot 2022-07-29 at 2 38 18 PM" src="https://user-images.githubusercontent.com/53852047/181815784-1f088ec9-48d8-4ded-8a80-273049103b46.png">
 
 - login
 <img width="1440" alt="Screenshot 2022-07-29 at 2 38 41 PM" src="https://user-images.githubusercontent.com/53852047/181815949-d98bf82a-cbd7-4b03-a8af-a4b8fd91aa15.png">
+
 - copy that token you received
 - switch to headers and add `Authorization` in key field and in value `Bearer (and then token just like see in picture)`
 <img width="1440" alt="Screenshot 2022-07-29 at 2 39 51 PM" src="https://user-images.githubusercontent.com/53852047/181816152-64aae280-c664-4cd3-aa32-58590e422c2b.png">

@@ -1,7 +1,3 @@
-# Shop_API
-
-A rest API for shop with multiple requests, errors handeld, utilized authentication and much more :)
-
 ## Usage Guide
 
 - first, clone the repository into your pc
